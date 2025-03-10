@@ -18,10 +18,7 @@ export const getCaketwaById = async(req, res) => {
                 id: req.params.id
             }
         });
-        if (!caketwa) {
-            return res.status(404).json({msg: "Data Caketwa Tidak Ditemukan"});
-        }
-        res.status(200).json(response);
+        res.json(response);
     } catch (error) {
         console.log(error.message);
     }
@@ -39,7 +36,7 @@ export const createCaketwa = async(req, res) => {
     const fileSize = file.data.length;
     const ext = path.extname(file.name);
     const fileName = file.md5 + ext;
-    const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
+    const url = `${req.protocol}://${req.get("host")}/public/images/${fileName}`;
     const allowedType = ['.png','.jpg','.jpeg'];
 
     if(!allowedType.includes(ext.toLowerCase())) return res.status(422).json({msg: "Invalid Images"});
@@ -88,7 +85,7 @@ export const updateCaketwa = async(req, res) => {
         const filePath = `./public/images/${data.namaFoto}`;
         fs.unlinkSync(filePath);
 
-        file = mv(`./public/images/${fileName}`, async(err)=>{
+        file.mv(`./public/images/${fileName}`, async(err)=>{
             if(err) return res.status(500).json({msg: err.message});
         });
     }
@@ -98,7 +95,7 @@ export const updateCaketwa = async(req, res) => {
     const caKetua = req.body.caKetua;
     const caWakil = req.body.caWakil;
     const proker = req.body.proker;
-    const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
+    const url = `${req.protocol}://${req.get("host")}/public/images/${fileName}`;
 
     try {
         await Caketwa.update({

@@ -21,7 +21,6 @@ const LoginForm = () => {
                 username: username,
                 password: password
             });
-
             navigate("/dashboard");
         } catch (error) {
             console.log(error);

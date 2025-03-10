@@ -2,6 +2,8 @@ import { BrowserRouter , Routes, Route } from 'react-router-dom'
 import RegisterForm from './components/Register'
 import LoginForm from './components/Login'
 import Dashboard from './components/Dashboard'
+import AddCaketwaForm from './components/AddCaketwa'
+import EditCaketwaForm from './components/EditCaketwa'
 
 function App() {
   return (
@@ -11,8 +13,8 @@ function App() {
           <Route path='/' element={<RegisterForm/>}/> 
           <Route path="/login" element={<LoginForm/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
-          {/* <Route path="/add" element={<AddUser/>}/>
-          <Route path="/edit/:id" element={<EditUser/>}/>   */}
+          <Route path="/add" element={<AddCaketwaForm/>}/>
+          <Route path="/edit/:id" element={<EditCaketwaForm/>}/>  
         </Routes>
       </BrowserRouter>
     </>
